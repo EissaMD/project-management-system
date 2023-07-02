@@ -1,6 +1,12 @@
 import ttkbootstrap as ttk
 
 class EntriesFrame(ttk.Labelframe):
+    """Create a new Frame with multiple entries in grid format
+    Args:
+        master (_type_): parent frame or window
+        title (_type_): small text on the top left of the frame
+        entry_ls (tuple or list): (entry_name , entry_type , row , col , options). Defaults to ().
+    """
     def __init__(self,master,title,entry_ls=()):
         self.entry_dict = {}
         super().__init__(master,text= title,  height=100)
