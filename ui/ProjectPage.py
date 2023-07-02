@@ -4,8 +4,8 @@ from .EntriesFrame import EntriesFrame
 
 
 class ProjectPage(NewPage):
-        def __init__(self,main_window,secondary_menu,body_frame):
-                super().__init__(main_window,secondary_menu,body_frame)
+        def __init__(self,main_window):
+                super().__init__(main_window)
                 menu = {"Add New Project"   :self.new_project_frame,
                         "Edit Project"      :self.edit_project_frame,
                         "Delete Project"    :self.delete_project_frame,

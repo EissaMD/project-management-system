@@ -12,13 +12,7 @@ class App(ttk.Window):
         # ============ create top menu ============
         top_frame = ttk.Frame(master=self,height=400, bootstyle="secondary")
         top_frame.pack(side="top" , fill="x" ,anchor="center" )
-        self.secondary_menu = ttk.Frame(master=self, bootstyle="info")
-        self.secondary_menu.pack(side="top" , fill="x" ,anchor="w")
-        frame=ttk.Frame(self.secondary_menu, bootstyle="info"); frame.pack()
-        # ============ Create body frame ============
-        self.body_frame = ttk.Frame(master=self, bootstyle="light")
-        self.body_frame.pack( fill="both" ,expand=True)
-        
+        self.page = None
         main_menu = {"Project"  :   ProjectPage,
                      "Supplier" :   ProjectPage,
                      "Customer" :   ProjectPage,
@@ -28,10 +22,11 @@ class App(ttk.Window):
             ttk.Button(top_frame,text=btn_name ,command=lambda: self.main_menu_btn(page_class)).pack(side="left")
         self.main_menu_btn(ProjectPage)
     def main_menu_btn(self,page_class):
+        if self.page is not None:
+            self.page.secondary_menu.destroy()
+            self.page.body_frame.destroy()
         # initialize the page class
-        page = page_class(self,self.secondary_menu , self.body_frame)
-        # get secondary_menu and body frame so it can be destroyed later
-        self.secondary_menu , self.body_frame = page.get_frames()
+        self.page = page_class(self)
 ##############################################################################################################
 
 if __name__ == "__main__":
